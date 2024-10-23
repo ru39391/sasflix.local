@@ -7,23 +7,26 @@
     :likes="currentPost.reactions.likes.toString()"
     :dislikes="currentPost.reactions.dislikes.toString()"
   />
+  <CommentList />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount } from 'vue';
+import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { useBlogStore } from '../store/modules/blog';
+import CommentList from '../components/CommentList.vue';
 import PostItem from '../components/PostItem.vue';
 
 export default defineComponent({
   name: 'Post',
 
   components: {
+    CommentList,
     PostItem
   },
 
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true
     }
   },
@@ -35,6 +38,14 @@ export default defineComponent({
     onBeforeMount(() => {
       blogStore.setCurrentPost(Number(props.id));
     });
+
+    watch(
+      () => blogStore.currentPost,
+      (data) => {
+        blogStore.fetchComments(data);
+      },
+      { deep: true }
+    );
 
     return {
       currentPost

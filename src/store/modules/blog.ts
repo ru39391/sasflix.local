@@ -1,11 +1,18 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import { API_URL } from '../../utils/constant';
 import axios from 'axios';
 
-import type { TRespData, TPostData } from '../../utils/types';
+import type {
+  TCommentData,
+  TCommentRespData,
+  TPostData,
+  TPostRespData
+} from '../../utils/types';
 
 const useBlogStore = defineStore('blog', () => {
   const isLoading = ref(true);
+  const commentList = ref<TCommentData[]>([]);
   const postList = ref<TPostData[]>([]);
   const currentPost = ref<TPostData | undefined>(undefined);
 
@@ -17,13 +24,35 @@ const useBlogStore = defineStore('blog', () => {
     postList.value = arr;
   };
 
+  const setCommentList = (arr: TCommentData[]) => {
+    commentList.value = arr;
+  };
+
   const fetchPosts = async () => {
     setLoading(true);
 
     try {
-      const { data: { posts } }: { data: TRespData} = await axios.get('https://dummyjson.com/posts');
+      const { data: { posts } }: { data: TPostRespData} = await axios.get(API_URL);
 
       setPostList(posts.filter((_, index) => index < 5));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchComments = async (data: TPostData | undefined) => {
+    if(!data) {
+      setCommentList([]);
+    }
+
+    setLoading(true);
+
+    try {
+      const { data: { comments } }: { data: TCommentRespData} = await axios.get(`${API_URL}/${data?.id.toString()}/comments`);
+
+      setCommentList(comments);
     } catch (error) {
       console.error(error);
     } finally {
@@ -39,13 +68,18 @@ const useBlogStore = defineStore('blog', () => {
     currentPost.value = postList.value.find(post => post.id === id);
   };
 
+  const isCommentListExist = computed(() => commentList.value.length > 0);
+
   return {
     isLoading,
+    commentList,
     postList,
     currentPost,
+    isCommentListExist,
     setLoading,
     setPostList,
     fetchPosts,
+    fetchComments,
     setCurrentPost
   };
 });
