@@ -1,17 +1,15 @@
 <template>
-  <Blog />
+  <div class="wrapper">
+    <header class="header">ikakprosto.ru</header>
+    <slot name="content"></slot>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Blog from './views/Blog.vue';
 
 export default defineComponent({
-  name: 'App',
-
-  components: {
-    Blog
-  }
+  name: 'Layout'
 });
 </script>
 

@@ -1,16 +1,18 @@
 <template>
-  <Blog />
+  <Layout>
+    <template #content>Post</template>
+  </Layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Blog from './views/Blog.vue';
+import Layout from '../components/Layout.vue';
 
 export default defineComponent({
-  name: 'App',
+  name: 'Post',
 
   components: {
-    Blog
+    Layout
   }
 });
 </script>
