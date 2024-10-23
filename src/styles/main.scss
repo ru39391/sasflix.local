@@ -1,6 +1,7 @@
 @use 'base/reset';
 @use 'base/fonts';
 @use 'base/typography';
-@use 'layout/wrapper';
 @use 'layout/header';
+@use 'layout/wrapper';
+@use 'components/comment';
 @use 'components/post';

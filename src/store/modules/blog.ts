@@ -68,14 +68,11 @@ const useBlogStore = defineStore('blog', () => {
     currentPost.value = postList.value.find(post => post.id === id);
   };
 
-  const isCommentListExist = computed(() => commentList.value.length > 0);
-
   return {
     isLoading,
     commentList,
     postList,
     currentPost,
-    isCommentListExist,
     setLoading,
     setPostList,
     fetchPosts,

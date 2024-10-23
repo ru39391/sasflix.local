@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { onBeforeMount, computed, defineComponent } from 'vue';
+import { computed, defineComponent, onBeforeMount, onMounted } from 'vue';
 import { useBlogStore } from './store/modules/blog';
 import Layout from './components/Layout.vue';
 
@@ -25,6 +25,10 @@ export default defineComponent({
 
     onBeforeMount(() => {
       blogStore.fetchPosts();
+    });
+
+    onMounted(() => {
+      document.title = 'sasflix';
     });
 
     return {

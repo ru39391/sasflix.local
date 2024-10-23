@@ -1,7 +1,13 @@
 @use '../utils/helpers' as *;
 
 .post {
-  margin: 0 0 32px;
+  margin: 0 0 50px;
+}
+
+.post-wrapper {
+  .post {
+    margin: 0 0 32px;
+  }
 }
 
 .post__title {

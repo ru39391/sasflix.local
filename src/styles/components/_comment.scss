@@ -1,0 +1,57 @@
+@use '../utils/helpers' as *;
+
+.comment-wrapper {
+  @include flex(column);
+  gap: 24px 0;
+}
+
+.comment-heading {
+  font-size: 28px;
+  letter-spacing: -1.45px;
+}
+
+.comment {
+  @include flex();
+  gap: 0 8px;
+  align-items: flex-start;
+}
+
+.comment__userpic {
+  height: 46px;
+  flex: 0 0 46px;
+  max-width: 46px;
+  border-radius: 50%;
+  border: 3px solid $color-default;
+}
+
+.comment__wrapper {
+  flex-grow: 1;
+}
+
+.comment__title {
+  @include font(20px,600);
+  letter-spacing: -1px;
+  margin: 0 0 12px;
+}
+
+.comment__text {
+  font-size: 20px;
+  letter-spacing: -1px;
+  margin: 0 0 16px;
+}
+
+.comment__meta {
+  @include flex();
+  gap: 0 20px;
+  font-size: 14px;
+  letter-spacing: -0.08px;
+}
+
+.comment__date {
+  color: $color-light;
+}
+
+.comment__btn {
+  color: $color-danger;
+  text-decoration: underline;
+}
