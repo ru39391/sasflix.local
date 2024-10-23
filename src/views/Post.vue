@@ -1,18 +1,44 @@
 <template>
-  <Layout>
-    <template #content>Post</template>
-  </Layout>
+  <PostItem
+    v-if="currentPost"
+    :title="currentPost.title"
+    :desc="currentPost.body"
+    :tags="currentPost.tags"
+    :likes="currentPost.reactions.likes.toString()"
+    :dislikes="currentPost.reactions.dislikes.toString()"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Layout from '../components/Layout.vue';
+import { computed, defineComponent, onBeforeMount } from 'vue';
+import { useBlogStore } from '../store/modules/blog';
+import PostItem from '../components/PostItem.vue';
 
 export default defineComponent({
   name: 'Post',
 
   components: {
-    Layout
+    PostItem
+  },
+
+  props: {
+    id: {
+      type: Number,
+      required: true
+    }
+  },
+
+  setup(props) {
+    const blogStore = useBlogStore();
+    const currentPost = computed(() => blogStore.currentPost);
+
+    onBeforeMount(() => {
+      blogStore.setCurrentPost(Number(props.id));
+    });
+
+    return {
+      currentPost
+    };
   }
 });
 </script>

@@ -4,6 +4,7 @@
     :key="post.id"
     :title="post.title"
     :desc="post.body"
+    :url="`post-${post.id.toString()}`"
     :tags="post.tags"
     :likes="post.reactions.likes.toString()"
     :dislikes="post.reactions.dislikes.toString()"

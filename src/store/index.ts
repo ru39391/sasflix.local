@@ -2,4 +2,4 @@ import { createPinia } from 'pinia';
 
 const piniaStore = createPinia();
 
-export { piniaStore };
+export default piniaStore;

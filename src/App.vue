@@ -1,17 +1,22 @@
 <template>
-  <p v-if="isPostsLoading">Данные загружаются</p><Blog v-else />
+  <Layout>
+    <template #content>
+      <p v-if="isPostsLoading">Данные загружаются</p>
+      <router-view v-else></router-view>
+    </template>
+  </Layout>
 </template>
 
 <script lang="ts">
 import { onBeforeMount, computed, defineComponent } from 'vue';
 import { useBlogStore } from './store/modules/blog';
-import Blog from './views/Blog.vue';
+import Layout from './components/Layout.vue';
 
 export default defineComponent({
   name: 'App',
 
   components: {
-    Blog
+    Layout
   },
 
   setup() {

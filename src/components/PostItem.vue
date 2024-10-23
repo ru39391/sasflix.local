@@ -14,7 +14,13 @@
         </button>
       </div>
       <div class="post__meta">
-        <a class="post__link" href="#">Open comments</a>
+        <router-link
+          v-if="url"
+          :to="url"
+          class="post__link"
+        >
+          Open comments
+        </router-link>
         <div class="post__date">Today</div>
       </div>
       <div class="post__tags">
@@ -36,6 +42,10 @@ export default defineComponent({
       required: true,
     },
     desc: {
+      type: String,
+      required: false,
+    },
+    url: {
       type: String,
       required: false,
     },
