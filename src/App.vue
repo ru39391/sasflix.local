@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <p v-if="isPostsLoading">Данные загружаются</p>
+      <p v-if="isPostsLoading" class="preloader">Данные загружаются</p>
       <router-view v-else></router-view>
     </template>
   </Layout>

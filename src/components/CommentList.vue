@@ -4,6 +4,7 @@
     <CommentItem
       v-for="comment in commentList"
       :key="comment.id"
+      :id="comment.id"
       :name="comment.user.fullName"
       :text="comment.body"
     />

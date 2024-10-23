@@ -28,6 +28,20 @@ const useBlogStore = defineStore('blog', () => {
     commentList.value = arr;
   };
 
+  const setCurrentPost = (id: number) => {
+    if(id !== 0 && !id) {
+      currentPost.value = undefined;
+    }
+
+    currentPost.value = postList.value.find(post => post.id === id);
+  };
+
+  const removeComment = (id: string) => {
+    const arr = commentList.value.filter(item => item.id !== Number(id));
+
+    setCommentList(arr);
+  };
+
   const fetchPosts = async () => {
     setLoading(true);
 
@@ -60,21 +74,13 @@ const useBlogStore = defineStore('blog', () => {
     }
   };
 
-  const setCurrentPost = (id: number) => {
-    if(id !== 0 && !id) {
-      currentPost.value = undefined;
-    }
-
-    currentPost.value = postList.value.find(post => post.id === id);
-  };
-
   return {
     isLoading,
     commentList,
     postList,
     currentPost,
     setLoading,
-    setPostList,
+    removeComment,
     fetchPosts,
     fetchComments,
     setCurrentPost
