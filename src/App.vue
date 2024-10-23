@@ -1,9 +1,10 @@
 <template>
-  <Blog />
+  <p v-if="isPostsLoading">Данные загружаются</p><Blog v-else />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { onBeforeMount, computed, defineComponent } from 'vue';
+import { useBlogStore } from './store/modules/blog';
 import Blog from './views/Blog.vue';
 
 export default defineComponent({
@@ -11,6 +12,19 @@ export default defineComponent({
 
   components: {
     Blog
+  },
+
+  setup() {
+    const blogStore = useBlogStore();
+    const isPostsLoading = computed(() => blogStore.isLoading);
+
+    onBeforeMount(() => {
+      blogStore.fetchPosts();
+    });
+
+    return {
+      isPostsLoading
+    };
   }
 });
 </script>

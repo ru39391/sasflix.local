@@ -1,13 +1,18 @@
 <template>
   <PostItem
-    v-for="item in [{id: 0, name: 'Первый пост'}, {id: 1, name: 'Второй пост'}]"
-    :key="item.id"
-    :name="item.name"
+    v-for="post in postList"
+    :key="post.id"
+    :title="post.title"
+    :desc="post.body"
+    :tags="post.tags"
+    :likes="post.reactions.likes.toString()"
+    :dislikes="post.reactions.dislikes.toString()"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useBlogStore } from '../store/modules/blog';
 import PostItem from './PostItem.vue';
 
 export default defineComponent({
@@ -15,6 +20,15 @@ export default defineComponent({
 
   components: {
     PostItem,
+  },
+
+  setup() {
+    const blogStore = useBlogStore();
+    const postList = computed(() => blogStore.postList);
+
+    return {
+      postList
+    };
   }
 });
 </script>
