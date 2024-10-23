@@ -1,0 +1,19 @@
+@mixin offset($m, $p) {
+  margin: $m;
+  padding: $p;
+}
+
+@mixin fs-lh($fs, $lh) {
+  font-size: $fs;
+  line-height: $lh;
+}
+
+@mixin font($fs, $fw) {
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+@mixin flex($fd: row) {
+  display: flex;
+  flex-direction: $fd;
+}

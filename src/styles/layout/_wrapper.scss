@@ -1,0 +1,7 @@
+@use '../utils/helpers' as *;
+
+.wrapper {
+  @include offset(0 auto,0 12px);
+  width: 100%;
+  max-width: 700px;
+}

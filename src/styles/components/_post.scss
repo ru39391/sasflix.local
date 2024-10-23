@@ -1,0 +1,78 @@
+@use '../utils/helpers' as *;
+
+.post {
+  margin: 0 0 32px;
+}
+
+.post__title {
+  font-size: 28px;
+  letter-spacing: -1.45px;
+  margin: 0 0 16px;
+}
+
+.post__desc {
+  font-size: 20px;
+  letter-spacing: -1px;
+  margin: 0 0 24px;
+}
+
+.post__footer {
+  @include flex;
+  gap: 0 8px;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: -0.08px;
+}
+
+.post__counter {
+  @include flex;
+  gap: 0 1px;
+}
+
+.post__btn {
+  @include flex;
+  gap: 0 4px;
+  align-items: center;
+  padding: 8px 8px 8px 12px;
+  background-color: $color-disabled;
+
+  &:first-child {
+    border-radius: 30px 0 0 30px;
+  }
+
+  &:last-child {
+    border-radius: 0 30px 30px 0;
+  }
+}
+
+.post__btn-counter {
+  padding: 0 0 0 2px;
+  letter-spacing: -1px;
+  color: $color-light;
+}
+
+.post__meta {
+  @include flex;
+  gap: 0 8px;
+}
+
+.post__link {
+  color: $color-warning;
+  text-decoration: underline;
+}
+
+.post__date {
+  color: $color-light;
+}
+
+.post__tags {
+  @include flex;
+  gap: 0 4px;
+  align-items: center;
+}
+
+.post__tags-item {
+  padding: 4px;
+  border-radius: 3px;
+  background-color: $color-disabled;
+}

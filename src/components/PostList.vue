@@ -1,14 +1,19 @@
 <template>
-  <PostItem
-    v-for="post in postList"
-    :key="post.id"
-    :title="post.title"
-    :desc="post.body"
-    :url="`post-${post.id.toString()}`"
-    :tags="post.tags"
-    :likes="post.reactions.likes.toString()"
-    :dislikes="post.reactions.dislikes.toString()"
-  />
+  <div
+    v-if="postList.length > 0"
+    class="post-wrapper"
+  >
+    <PostItem
+      v-for="post in postList"
+      :key="post.id"
+      :title="post.title"
+      :desc="post.body"
+      :url="`post-${post.id.toString()}`"
+      :tags="post.tags"
+      :likes="post.reactions.likes.toString()"
+      :dislikes="post.reactions.dislikes.toString()"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,6 +38,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped>
-</style>

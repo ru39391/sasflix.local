@@ -4,11 +4,13 @@
     <p class="post__desc">{{ desc }}</p>
     <footer class="post__footer">
       <div class="post__counter">
-        <button class="post__btn post__btn_rounded_left" type="button">
+        <button class="post__btn" type="button">
+          <LikeIcon />
           Like
           <span class="post__btn-counter">{{ likes }}</span>
         </button>
-        <button class="post__btn post__btn_rounded_right" type="button">
+        <button class="post__btn" type="button">
+          <DislikeIcon />
           Trash
           <span class="post__btn-counter">{{ dislikes }}</span>
         </button>
@@ -32,9 +34,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import LikeIcon from '../assets/icons/LikeIcon.vue';
+import DislikeIcon from '../assets/icons/DislikeIcon.vue';
+import LikeFilledIcon from '../assets/icons/LikeFilledIcon.vue';
+import DislikeFilledIcon from '../assets/icons/DislikeFilledIcon.vue';
 
 export default defineComponent({
   name: 'PostItem',
+
+  components: {
+    LikeIcon,
+    DislikeIcon,
+    LikeFilledIcon,
+    DislikeFilledIcon
+  },
 
   props: {
     title: {
@@ -64,6 +77,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped>
-</style>

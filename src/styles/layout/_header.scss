@@ -1,0 +1,11 @@
+@use '../utils/helpers' as *;
+
+.header {
+  @include offset(0 0 58px,16px 0 0);
+  text-align: center;
+}
+
+.header__title {
+  @include font(40px,700);
+  color: $color-warning;
+}
