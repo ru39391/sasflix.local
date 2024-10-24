@@ -4,7 +4,7 @@
     <CommentItem
       v-for="comment in currCommentList"
       :key="comment.id"
-      :id="comment.id"
+      :id="comment.id.toString()"
       :name="comment.user.fullName"
       :text="comment.body"
     />

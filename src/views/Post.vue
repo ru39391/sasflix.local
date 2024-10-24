@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, watch } from 'vue';
+import { computed, defineComponent, onBeforeMount } from 'vue';
 import { useBlogStore } from '../store/modules/blog';
 import CommentList from '../components/CommentList.vue';
 import PostItem from '../components/PostItem.vue';

@@ -1,5 +1,40 @@
-# Vue 3 + TypeScript + Vite
+# Требования к проекту
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Реализовать приложение с общим списком постов и отдельными страницами с комментариями. Код на Nuxt3/Vue3, TypeScript и Pinia, и разбит на компоненты.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Приложения должно:
+ - повторять макет в Фигме;
+ - выводить первые 5 постов из API на общей странице;
+ - быть написано без использования готовых библиотек компонентов;
+ - иметь кликабельные кнопки лайка и дизлайка;
+ - удалять комментарии, изменять значении и стили кнопок локально.
+
+## Материалы
+
+ - [эндпойнт для получения списка постов](https://dummyjson.com/posts)
+ - [эндпойнт для получения списка комментариев, где вместо '1' надо подставить id поста](https://dummyjson.com/posts/1/comments)
+ - [Макет в фигме](https://jobs.sasflix.ru/frontender/App-Template.fig)
+
+## Запуск и сборка приложения
+
+Используется Vite. Для установки зависимостей выполните в директории проекта:
+
+### `npm i`
+
+Для запуска приложения в режиме разработки:
+
+### `npm run dev`
+
+Приложение будет доступно по адресу [http://localhost:5173/](http://localhost:5173/)
+
+Рекомендуется использовать NodeJS версии v18.0.0
+
+Для подготовки приложения к публикации выполните в консоли:
+
+### `npm run build`
+
+Минифицированные файлы приложения будут доступны в директории `dist` в корне проекта. Ознакомиться с приложением можно также по ссылке [https://sasflix.39391.ru/](https://sasflix.39391.ru/)
+
+## Возможные доработки
+
+Составить документацию для компонентов и методов приложения.

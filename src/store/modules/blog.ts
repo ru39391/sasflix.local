@@ -11,7 +11,6 @@ import {
 import axios from 'axios';
 
 import type {
-  TCustomData,
   TPostData,
   TPostRespData,
   TCommentData,
@@ -62,13 +61,13 @@ const useBlogStore = defineStore('blog', () => {
     likesList.value = [...arr];
   };
 
-  const ratePost = ({ id, key }: TCustomData<string>) => {
+  const ratePost = ({ id, key }: { id: string; key: 'isLiked' | 'isDisLiked' }) => {
     const arr = likesList.value.map(
       item => ({
         ...item,
         ...(
           item.id === Number(id) && {
-            [key]: !item[key],
+            [key]: !item[key] as boolean,
             ...( key === IS_LIKED_KEY && { [IS_DIS_LIKED_KEY]: false } ),
             ...( key === IS_DIS_LIKED_KEY && { [IS_LIKED_KEY]: false } )
           }
