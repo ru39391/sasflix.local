@@ -118,15 +118,15 @@ const useBlogStore = defineStore('blog', () => {
   return {
     isLoading,
     alertMessage,
-    commentList,
     postList,
     currentPost,
+    commentList,
     setLoading,
-    removeComment,
     fetchPosts,
-    fetchComments,
     setCurrentPost,
-    ratePost
+    ratePost,
+    fetchComments,
+    removeComment,
   };
 });
 
