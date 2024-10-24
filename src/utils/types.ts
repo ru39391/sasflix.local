@@ -10,6 +10,8 @@ export type TPostData = {
   reactions: TCustomData<number>;
   views: number;
   userId: number;
+  isLiked?: boolean;
+  isDisLiked?: boolean;
 }
 
 export type TPostRespData = {

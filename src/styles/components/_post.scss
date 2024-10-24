@@ -49,6 +49,16 @@
   &:last-child {
     border-radius: 0 30px 30px 0;
   }
+
+  &.post__btn_bg_red {
+    color: $color-white;
+    background-color: $color-danger;
+  }
+
+  &.post__btn_bg_black {
+    color: $color-white;
+    background-color: $color-dark;
+  }
 }
 
 .post__btn-counter {

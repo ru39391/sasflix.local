@@ -29,7 +29,7 @@ export default defineComponent({
 
     const setCommentsCaption = (count: number) => {
       if(count === 0) {
-        return 'Ещё никто не оставил комментарий';
+        return 'Ещё никто не прокомментировал';
       }
 
       const lastTwoDigits = count % 100;

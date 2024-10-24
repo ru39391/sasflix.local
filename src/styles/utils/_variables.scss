@@ -1,7 +1,9 @@
 @use 'sass:color';
 
+$color-white: #fff;
 $color-default: #05090E;
 $color-danger: #FF3B30;
 $color-warning: #FF6B00;
-$color-light: color.adjust($color: #040405, $lightness: 78%);
-$color-disabled: color.adjust($color: #040405, $lightness: 96%);
+$color-dark: #040405;
+$color-light: color.adjust($color: $color-dark, $lightness: 78%);
+$color-disabled: color.adjust($color: $color-dark, $lightness: 96%);

@@ -1,11 +1,14 @@
 <template>
   <PostItem
     v-if="currentPost"
+    :id="currentPost.id.toString()"
     :title="currentPost.title"
     :desc="currentPost.body"
     :tags="currentPost.tags"
     :likes="currentPost.reactions.likes.toString()"
     :dislikes="currentPost.reactions.dislikes.toString()"
+    :isLiked="currentPost.isLiked"
+    :isDisLiked="currentPost.isDisLiked"
   />
   <CommentList />
 </template>
@@ -44,7 +47,7 @@ export default defineComponent({
       (data) => {
         blogStore.fetchComments(data);
       },
-      { deep: true }
+      { deep: false }
     );
 
     return {

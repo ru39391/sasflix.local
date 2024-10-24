@@ -6,12 +6,15 @@
     <PostItem
       v-for="post in postList"
       :key="post.id"
+      :id="post.id.toString()"
       :title="post.title"
       :desc="post.body"
       :url="`post-${post.id.toString()}`"
       :tags="post.tags"
       :likes="post.reactions.likes.toString()"
       :dislikes="post.reactions.dislikes.toString()"
+      :isLiked="post.isLiked"
+      :isDisLiked="post.isDisLiked"
     />
   </div>
 </template>
