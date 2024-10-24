@@ -2,6 +2,12 @@ export type TCustomData<T> = {
   [x: string]: T;
 }
 
+export type TLikedData = {
+  id: number;
+  isLiked: boolean;
+  isDisLiked: boolean;
+}
+
 export type TPostData = {
   id: number;
   title: string;
@@ -10,8 +16,6 @@ export type TPostData = {
   reactions: TCustomData<number>;
   views: number;
   userId: number;
-  isLiked?: boolean;
-  isDisLiked?: boolean;
 }
 
 export type TPostRespData = {

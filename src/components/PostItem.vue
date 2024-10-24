@@ -5,22 +5,22 @@
     <footer class="post__footer">
       <div class="post__counter">
         <button
-          :class="['post__btn', { 'post__btn_bg_red': isLiked }]"
+          :class="['post__btn', { 'post__btn_bg_red': currLikes.isLiked }]"
           type="button"
           @click="ratePost({ id, key: 'isLiked' })"
         >
-          <LikeFilledIcon v-if="isLiked" /><LikeIcon v-else />
+          <LikeFilledIcon v-if="currLikes.isLiked" /><LikeIcon v-else />
           Like
-          <span class="post__btn-counter">{{ currLikes }}</span>
+          <span class="post__btn-counter">{{ currLikes.likes }}</span>
         </button>
         <button
-          :class="['post__btn', { 'post__btn_bg_black': isDisLiked }]"
+          :class="['post__btn', { 'post__btn_bg_black': currDisLikes.isDisLiked }]"
           type="button"
           @click="ratePost({ id, key: 'isDisLiked' })"
         >
-          <DislikeFilledIcon v-if="isDisLiked" /><DislikeIcon v-else />
+          <DislikeFilledIcon v-if="currDisLikes.isDisLiked" /><DislikeIcon v-else />
           Trash
-          <span class="post__btn-counter">{{ currDisLikes }}</span>
+          <span class="post__btn-counter">{{ currDisLikes.dislikes }}</span>
         </button>
       </div>
       <div class="post__meta">
@@ -42,6 +42,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+import { IS_LIKED_KEY, IS_DIS_LIKED_KEY } from '../utils/constants';
 import { useBlogStore } from '../store/modules/blog';
 import LikeIcon from '../assets/icons/LikeIcon.vue';
 import DislikeIcon from '../assets/icons/DislikeIcon.vue';
@@ -87,29 +88,35 @@ export default defineComponent({
       type: String,
       required: false,
     },
-    isLiked: {
-      type: Boolean,
-      required: false,
-    },
-    isDisLiked: {
-      type: Boolean,
-      required: false,
-    },
   },
 
   setup(props) {
     const blogStore = useBlogStore();
 
-    const currLikes = computed(() => {
-      const likes = props.isLiked ? Number(props.likes) + 1 :  Number(props.likes);
+    const likedData = computed(() => {
+      const data = blogStore.likesList.find(item => item.id === Number(props.id));
 
-      return likes.toString();
+      return data || { id: 0, [IS_LIKED_KEY]: false, [IS_DIS_LIKED_KEY]: false }
+    });
+
+    const currLikes = computed(() => {
+      const { isLiked } = likedData.value;
+      const likes = isLiked ? Number(props.likes) + 1 :  Number(props.likes);
+
+      return {
+        likes: likes.toString(),
+        isLiked
+      };
     });
 
     const currDisLikes = computed(() => {
-      const dislikes = props.isDisLiked ? Number(props.dislikes) + 1 :  Number(props.dislikes);
+      const { isDisLiked } = likedData.value;
+      const dislikes = isDisLiked ? Number(props.dislikes) + 1 :  Number(props.dislikes);
 
-      return dislikes.toString();
+      return {
+        dislikes: dislikes.toString(),
+        isDisLiked
+      };
     });
 
     return {

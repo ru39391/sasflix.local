@@ -1,8 +1,8 @@
 <template>
   <section class="comment-wrapper">
-    <h2 class="comment-heading">{{ setCommentsCaption(commentList.length) }}</h2>
+    <h2 class="comment-heading">{{ setCommentsCaption(currCommentList.length) }}</h2>
     <CommentItem
-      v-for="comment in commentList"
+      v-for="comment in currCommentList"
       :key="comment.id"
       :id="comment.id"
       :name="comment.user.fullName"
@@ -25,7 +25,16 @@ export default defineComponent({
 
   setup() {
     const blogStore = useBlogStore();
-    const commentList = computed(() => blogStore.commentList);
+
+    const currCommentList = computed(() => {
+      const { commentList, currentPost } = blogStore;
+
+      if(!currentPost) {
+        return [];
+      }
+
+      return commentList.filter(item => item.postId === currentPost.id)
+    });
 
     const setCommentsCaption = (count: number) => {
       if(count === 0) {
@@ -50,7 +59,7 @@ export default defineComponent({
     };
 
     return {
-      commentList,
+      currCommentList,
       setCommentsCaption
     };
   }

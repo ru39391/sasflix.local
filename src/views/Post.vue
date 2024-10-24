@@ -7,8 +7,6 @@
     :tags="currentPost.tags"
     :likes="currentPost.reactions.likes.toString()"
     :dislikes="currentPost.reactions.dislikes.toString()"
-    :isLiked="currentPost.isLiked"
-    :isDisLiked="currentPost.isDisLiked"
   />
   <CommentList />
 </template>
@@ -41,14 +39,6 @@ export default defineComponent({
     onBeforeMount(() => {
       blogStore.setCurrentPost(Number(props.id));
     });
-
-    watch(
-      () => blogStore.currentPost,
-      (data) => {
-        blogStore.fetchComments(data);
-      },
-      { deep: false }
-    );
 
     return {
       currentPost

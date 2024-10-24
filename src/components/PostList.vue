@@ -13,8 +13,6 @@
       :tags="post.tags"
       :likes="post.reactions.likes.toString()"
       :dislikes="post.reactions.dislikes.toString()"
-      :isLiked="post.isLiked"
-      :isDisLiked="post.isDisLiked"
     />
   </div>
 </template>
